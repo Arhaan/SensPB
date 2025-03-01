@@ -49,4 +49,7 @@ options:
                         Indexes of the features for which to do sensitivity analysis
   --details DETAILS     File containing names of features and their bounds
   --time TIME           Stopping time (in seconds), only for veritas
-  
+```
+# Citations
+[Sensitivity Verification for Decision Tree Ensembles](https://openreview.net/forum?id=h0vC0fm1q7).
+Arhaan Ahmad, Tanay Vineet Tayal, Ashutosh Gupta and S. Akshay. _ICLR 2025_
