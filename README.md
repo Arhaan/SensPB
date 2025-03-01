@@ -1,14 +1,14 @@
-# Installing roundingsat
-----------------------
 
-```
-cd ./utils
-./installrounding.sh
-```
 
 # Installations
 ```
 pip install -r requirements.txt
+```
+
+## Installing roundingsat (Optional)
+```
+cd ./utils
+./installrounding.sh
 ```
 
 # Running 
