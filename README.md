@@ -38,7 +38,7 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --solver {z3,naive_z3,rounding,roundingsoplex,veritas}
-                        The solver to use. z3 should be fine for 
+                        Solving method to use. 
   --gap GAP             Gap for checking sensitivity
   --precision PRECISION
                         Scale for checking sensitivity
