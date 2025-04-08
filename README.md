@@ -1,6 +1,13 @@
 
 
 # Installations
+Create a virtual environment by following the information [here](https://docs.python.org/3/library/venv.html). 
+The typical instructions are:
+```
+python -m venv /path/to/new/virtual/environment
+source <venv>/bin/activate
+```
+Install all the requirements in this virtual environment by running:
 ```
 pip install -r requirements.txt
 ```
@@ -16,13 +23,14 @@ cd ./utils
 The relevant code is present in `./src`
 To run use the following command:
 ```
-python sensitive.py <model file> --solver <solvername> --gap <int> --precision <int> --features 
+python sensitive.py <model file> --solver <solvername> --gap <float> --precision <int> --features 
 ```
 
-Run 
+For help run: 
 ```
-python sensitive.py -h for help
+python sensitive.py -h
 ```
+
 
 Sample command:
 ```
