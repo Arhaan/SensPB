@@ -37,6 +37,12 @@ Sample command:
 python sensitive.py ../models/tree_verification_models/diabetes_robust/0020.model --solver z3 --gap 1.3 --precision 100
 ```
 
+# Gap and Precision:
+The tool uses two important parameters. The math is detailed in the ICLR paper cited.
+
+Gap (float): The aim is to find two inputs $x^{(1)}$ and $x^{(2)}$ such that ${Output}(x^{(1)}) = 0.5  + \text{gap}$ and ${Output}(x^{(2)}) = 0.5 - \text{gap}$. Increasing the gap will lead to more significant counterexamples. As gap $\to 0$, all models become sensitive. A typical value to use for gap is 0.15.
+
+Precision (float): SensPB is an approximate tool. We use a pseudo-Boolean encoding and want integers to represent leaf weights. To this end, we multiply the leaf values by the parameter precision and then take ceil/floor of the values. Our tool is sound but not complete for checking sensitivity, and increasing precision reduces the amount of wrong counterexamples produced. A rule of thumb is to use precision $= 10\times $ Number of trees in the ensemble. The math behind the theoretical guarantees is present in the ICLR paper cited. 
 
 # Options
 ```
