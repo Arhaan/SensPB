@@ -34,7 +34,7 @@ python sensitive.py -h
 
 Sample command:
 ```
-python sensitive.py ../models/tree_verification_models/diabetes_robust/0020.model --solver z3 --gap 1.3 --precision 100
+python sensitive.py ../models/tree_verification_models/diabetes_robust/0020.model --solver z3 --gap 0.15 --precision 200 --features 0 1 2 3 4
 ```
 
 # Gap and Precision:
