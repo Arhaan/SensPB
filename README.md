@@ -21,7 +21,7 @@ cd ./utils
 # Running 
 ----------------------
 The relevant code is present in `./src`
-To run use the following command:
+To run, use the following command in the `./src` folder:
 ```
 python sensitive.py <model file> --solver <solvername> --gap <float> --precision <int> --features 
 ```
