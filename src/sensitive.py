@@ -21,6 +21,7 @@ from tqdm import tqdm
 from rangedbooster import ExtendedBooster
 import pdb
 from converttoopb import roundingSolve
+from utils import sigmoid_inv, pretty_print
 
 from subprocess import check_output
 from xyplot import Curve
@@ -492,6 +493,7 @@ def main(args):
     solver = args.solver
     close = args.close
     gap = args.gap
+    gap = sigmoid_inv(gap+0.5)
     precision = args.precision
     max_trees = args.max_trees
     features = args.features
@@ -545,7 +547,8 @@ def main(args):
             result_copy = result[0].copy()
             for x in f:
                 result[0][x] = (result[0][x], result[1][x])
-            print(f, precision, int(time.time() - start_time), vals, result[0])
+            print(f"Output: {vals[0]} -> {vals[1]}")
+            pretty_print(result[0])
 
             if args.plot:
                 plot_variations(
@@ -553,7 +556,7 @@ def main(args):
                 )
 
         else:
-            print(f, precision, int(time.time() - start_time), "Insensitive")
+            print("Insensitive")
 
     if features is None:
         features = [0]
@@ -629,7 +632,7 @@ if __name__ == "__main__":
         help="Be sure about counterexamples and unsure about fairness",
     )
     parser.add_argument(
-        "--gap", type=float, default=1, help="Gap for checking sensitivity"
+        "--gap", type=float, default=1, help="Gap for checking sensitivity (in the probability space)"
     )
     parser.add_argument(
         "--precision", type=float, default=100, help="Scale for checking sensitivity"

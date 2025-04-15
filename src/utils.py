@@ -3,6 +3,22 @@ import json
 import os
 import pickle
 import pandas as pd
+import numpy as np
+def sigmoid_inv(x: float) -> float:
+    return np.log(x/(1-x))
+
+def pretty_print(results: list, fnames: list = None):
+    if fnames is None:
+        fnames = [i for i in range(len(results))]
+    print("+----------+")
+    print("|  Index   |  Value   |")
+    print("+----------+----------+")
+    for i, item in enumerate(results):
+        if isinstance(item, tuple):
+            item = f"{item[0]} -> {item[1]}"
+        print(f"| {fnames[i]:^10} | {item:^10} |")
+    print("+----------+----------+")
+
 
 model_files = [
     #  '../models/tree_verification_models/binary_mnist_unrobust/1000.resaved.json',
@@ -135,19 +151,12 @@ def open_model_xgb(model_file, max_trees=None, max_classes=None, veritas=False):
     depth = max(tree_depths)
     if max_trees is not None and max_trees != -1 and n_trees > max_trees:
         trees = trees[trees["Tree"] < max_trees]
-        n_trees = max_trees  # TODO: This does not edit the model, so final solving might not show any unfairness
-    # Comment out before running
-    if max_classes is not None and max_classes != -1 and num_classes > max_classes:
-        max_classes = 3
-        trees = trees[trees["class"] < max_classes]
-        num_classes = max_classes
+        n_trees = max_trees  # Note: This does not edit the model, so one needs to explicilty pass this while acquiring the final output from the ensemble.
     data = [
         ("model name", model_file),
-        ("trees per class", n_trees),
-        ("number of classes", num_classes),
         ("number of features", n_features),
         ("max depth", depth),
-        ("all trees", len(dump)),
+        ("Number of trees", len(dump)),
     ]
 
     for label, value in data:
